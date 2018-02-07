@@ -75,8 +75,12 @@ register_on_message(function(message)
 	if message:sub(1,1) == "/" or modstorage:get_string("colour") == "" or modstorage:get_string("colour") == "white" then
 		return false
 	end
-
-	say(core.get_color_escape_sequence(modstorage:get_string("colour")) .. message)
+	local atname, msg=string.match(message, "^@([^%s:]*)[%s:](.*)")
+	if players and msg then
+		say(atname .. core.get_color_escape_sequence(modstorage:get_string("colour")) .. msg)
+	else
+		say(core.get_color_escape_sequence(modstorage:get_string("colour")) .. message)
+	end
 	return true
 end)
 
