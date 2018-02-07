@@ -76,8 +76,8 @@ register_on_message(function(message)
 		return false
 	end
 	local atname, msg=string.match(message, "^@([^%s:]*)[%s:](.*)")
-	if players and msg then
-		say(atname .. core.colorize(modstorage:get_string("colour"), msg))
+	if atname and msg then
+		say("@"..atname .." ".. core.colorize(modstorage:get_string("colour"), msg))
 	else
 		say(core.get_color_escape_sequence(modstorage:get_string("colour")) .. message)
 	end
